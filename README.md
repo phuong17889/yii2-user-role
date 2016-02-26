@@ -1,4 +1,12 @@
 # yii2-user-role
+Install
+---
+~~~
+composer require navatech/yii2-user-role "@dev"
+~~~
+~~~
+php yii migrate/up --migrationPath=@navatech/role/migrations
+~~~
 Config:
 ---
 ## in config file
