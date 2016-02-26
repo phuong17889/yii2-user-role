@@ -16,7 +16,7 @@ class m160226_063609_create_role extends Migration {
 		$this->addColumn('{{%user}}', 'role_id', Schema::TYPE_INTEGER . ' NOT NULL DEFAULT "1"');
 		$this->insert('{{%role}}', [
 			'name'             => 'Administrator',
-			'perrmissions'     => Json::encode([
+			'permissions'     => Json::encode([
 				'navatech\role\controllers\DefaultController' => [
 					'index'  => 1,
 					'create' => 1,
@@ -28,7 +28,7 @@ class m160226_063609_create_role extends Migration {
 		]);
 		$this->insert('{{%role}}', [
 			'name'             => 'Staff',
-			'perrmissions'     => Json::encode([
+			'permissions'     => Json::encode([
 				'navatech\role\controllers\DefaultController' => [
 					'index'  => 0,
 					'create' => 0,
@@ -40,7 +40,7 @@ class m160226_063609_create_role extends Migration {
 		]);
 		$this->insert('{{%role}}', [
 			'name'             => 'Member',
-			'perrmissions'     => '',
+			'permissions'     => '',
 			'is_backend_login' => 0,
 		]);
 	}
