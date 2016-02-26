@@ -1,6 +1,7 @@
 <?php
 use yii\db\Migration;
 use yii\db\mysql\Schema;
+use yii\helpers\Json;
 
 class m160226_063609_create_role extends Migration {
 
@@ -12,7 +13,36 @@ class m160226_063609_create_role extends Migration {
 			'permissions'      => Schema::TYPE_TEXT . ' NOT NULL',
 			'is_backend_login' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT "0"',
 		], $tableOptions);
-		$this->addColumn('{{%user}}', 'role_id', Schema::TYPE_INTEGER . ' NOT NULL');
+		$this->addColumn('{{%user}}', 'role_id', Schema::TYPE_INTEGER . ' NOT NULL DEFAULT "1"');
+		$this->insert('{{%role}}', [
+			'name'             => 'Administrator',
+			'perrmissions'     => Json::encode([
+				'navatech\role\controllers\DefaultController' => [
+					'index'  => 1,
+					'create' => 1,
+					'update' => 1,
+					'delete' => 1,
+				],
+			]),
+			'is_backend_login' => 1,
+		]);
+		$this->insert('{{%role}}', [
+			'name'             => 'Staff',
+			'perrmissions'     => Json::encode([
+				'navatech\role\controllers\DefaultController' => [
+					'index'  => 0,
+					'create' => 0,
+					'update' => 0,
+					'delete' => 0,
+				],
+			]),
+			'is_backend_login' => 1,
+		]);
+		$this->insert('{{%role}}', [
+			'name'             => 'Member',
+			'perrmissions'     => '',
+			'is_backend_login' => 0,
+		]);
 	}
 
 	public function down() {

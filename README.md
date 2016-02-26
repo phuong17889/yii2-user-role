@@ -5,7 +5,14 @@ Config:
 ~~~
 [php]
 'modules'    => [
-    'role'  => [
+    'user'  => [
+        'class'              => 'dektrium\user\Module',
+        'modelMap'           => [
+            'User'      => 'navatech\role\models\User',//IMPORTANT & REQUIRED, change to your User model if overridden
+            'LoginForm' => 'navatech\role\models\LoginForm',//IMPORTANT & REQUIRED
+        ],
+    ],
+   'role'  => [
         'class'               => 'navatech\role\Module',
         'controllers'         => [ //namespaces of controllers
             'app\controllers',
@@ -15,27 +22,9 @@ Config:
 ],
 ~~~
 
-## in model User
-### Way 1: open model User and implements UserInterface
+## in model User, if you override it
 ~~~
-class User extends \yii\db\ActiveRecord implements \navatech\role\interfaces\UserInterface
-~~~
-### or Way 2: add two methods without implements UserInterface
-~~~
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getRole() {
-		return $this->hasOne(Role::className(), ['id' => 'role_id'])->one();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getRoleId() {
-		return $this->role_id;
-	}
-
+class User extends \navatech\role\models\User
 ~~~
 
 ## In every controller you want to check role
@@ -45,10 +34,7 @@ class SiteController extends Controller {
     public function behaviors() {
         return [
             'verbs' => [
-                'class'   => VerbFilter::className(),
-                'actions' => [
-                    'delete'        => ['post'],
-                ],
+            ....
             ],
             'role'  => [
                 'class'   => RoleFilter::className(),
