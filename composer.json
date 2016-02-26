@@ -1,0 +1,31 @@
+{
+	"name" : "navatech/yii2-user-role",
+	"description" : "This is simple user role for Yii2",
+	"keywords" : [
+		"yii2",
+		"user role",
+		"role base"
+	],
+	"type" : "yii2-extension",
+	"license" : "MIT",
+	"minimum-stability" : "dev",
+	"support" : {
+		"source" : "https://github.com/navatech/yii2-user-role"
+	},
+	"authors" : [
+		{
+			"name" : "Le Phuong",
+			"email" : "phuong17889@gmail.com"
+		}
+	],
+	"require" : {
+		"yiisoft/yii2" : "*",
+		"yiisoft/yii2-bootstrap" : "*",
+		"kartik-v/yii2-grid" : "@dev"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"navatech\\role\\" : "src"
+		}
+	}
+}
