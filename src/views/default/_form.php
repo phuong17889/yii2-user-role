@@ -1,4 +1,5 @@
 <?php
+use navatech\role\helpers\RoleChecker;
 use navatech\role\helpers\RoleHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -44,7 +45,7 @@ use yii\widgets\ActiveForm;
 							<?php foreach ($actions['actions'] as $action => $name) : ?>
 								<div class="checkbox col-sm-2">
 									<?= Html::hiddenInput('Role[permissions][' . $controller . '][' . $action . ']', 0) ?>
-									<?= Html::checkbox('Role[permissions][' . $controller . '][' . $action . ']', true, [
+									<?= Html::checkbox('Role[permissions][' . $controller . '][' . $action . ']', RoleChecker::isAuth($controller, $action), [
 										'class' => 'ace',
 										'id'    => 'Role_permissions_' . str_replace('\\', '_', $controller) . '_' . $action,
 									]) ?>

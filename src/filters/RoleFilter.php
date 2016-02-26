@@ -33,7 +33,7 @@ class RoleFilter extends Behavior {
 	}
 
 	public function beforeAction(ActionEvent $event) {
-		$controller = $event->action->controller->id;
+		$controller = $event->action->controller->className();
 		$action     = $event->action->id;
 		if (RoleChecker::isAuth($controller, $action)) {
 			return true;
