@@ -8,7 +8,12 @@
  * @time    11:50 SA
  */
 namespace navatech\role;
+
+use Yii;
+
 class Module extends \yii\base\Module {
 
 	const VERSION = '1.0.0';
+
+	public $controllers = ['navatech\role\controllers'];
 }
