@@ -63,9 +63,4 @@ use navatech\role\helpers\RoleChecker;
 ...
 //public static function isAuth($controller, $action = '', $role_id = null)
 $boolean = RoleChecker::isAuth(SiteController::className(), 'index', Yii::$app->user->identity->getRoleId());
-
-//public static function hasActive($controller, $action = '', $role_id = null)
-$active = RoleChecker::hasActive(SiteController::className(), 'index', Yii::$app->user->identity->getRoleId());
-
-<div class="<?=$active?>"></div>
 ~~~

@@ -42,8 +42,14 @@ class RoleChecker {
 				return true;
 			} else {
 				foreach (Json::decode($role->permissions) as $controllerName => $actions) {
-					if ($controllerName == $controller && in_array($action, array_keys($actions)) && $actions[$action] == 1) {
-						return true;
+					if ($controllerName != $controller) {
+						continue;
+					} else {
+						if (in_array($action, array_keys($actions))) {
+							return ($actions[$action] == 1);
+						} else {
+							return true;
+						}
 					}
 				}
 				return false;
@@ -51,16 +57,5 @@ class RoleChecker {
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * @param        $controller
-	 * @param string $action
-	 * @param null   $role_id
-	 *
-	 * @return string
-	 */
-	public static function hasActive($controller, $action = '', $role_id = null) {
-		return self::isAuth($controller, $action, $role_id) ? 'active' : '';
 	}
 }
