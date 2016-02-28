@@ -36,26 +36,33 @@ class RoleChecker {
 		if ($role === null) {
 			return false;
 		}
+		if($role->is_backend_login != 1){
+			return false;
+		}
 		$permissions = Json::decode($role->permissions);
-		if ($permissions != null && in_array($controller, array_keys($permissions))) {
-			if ($action == '') {
-				return true;
-			} else {
-				foreach (Json::decode($role->permissions) as $controllerName => $actions) {
-					if ($controllerName != $controller) {
-						continue;
-					} else {
-						if (in_array($action, array_keys($actions))) {
-							return ($actions[$action] == 1);
+		if ($permissions != null) {
+			if (in_array($controller, array_keys($permissions))) {
+				if ($action == '') {
+					return true;
+				} else {
+					foreach (Json::decode($role->permissions) as $controllerName => $actions) {
+						if ($controllerName != $controller) {
+							continue;
 						} else {
-							return true;
+							if (in_array($action, array_keys($actions))) {
+								return ($actions[$action] == 1);
+							} else {
+								return true;
+							}
 						}
 					}
+					return false;
 				}
-				return false;
+			} else {
+				return true;
 			}
 		} else {
-			return false;
+			return true;
 		}
 	}
 }
