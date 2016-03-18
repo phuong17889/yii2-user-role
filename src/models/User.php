@@ -8,16 +8,19 @@
  * @time    12:12 SA
  */
 namespace navatech\role\models;
+
+use yii\db\ActiveQuery;
+
 /**
  * @property $role_id int
  */
 class User extends \dektrium\user\models\User {
 
 	/**
-	 * @return Role
+	 * @return ActiveQuery
 	 */
 	public function getRole() {
-		return $this->hasOne(Role::className(), ['id' => 'role_id'])->one();
+		return $this->hasOne(Role::className(), ['id' => 'role_id']);
 	}
 
 	/**
