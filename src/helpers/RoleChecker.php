@@ -10,6 +10,7 @@
 namespace navatech\role\helpers;
 
 use navatech\role\models\Role;
+use navatech\role\models\User;
 use Yii;
 use yii\helpers\Json;
 
@@ -30,13 +31,19 @@ class RoleChecker {
 			/**@var $role Role */
 			$role = Role::findOne(['id' => $role_id]);
 		} else {
-			/**@var $role Role */
-			$role = Yii::$app->user->identity->getRole();
+			/**@var $user User */
+			$user = Yii::$app->user->identity;
+			if ($user->getRole()->exists()) {
+				/**@var $role Role */
+				$role = $user->getRole()->one();
+			} else {
+				$role = new Role();
+			}
 		}
 		if ($role === null) {
 			return false;
 		}
-		if($role->is_backend_login != 1){
+		if ($role->is_backend_login != 1) {
 			return false;
 		}
 		$permissions = Json::decode($role->permissions);
