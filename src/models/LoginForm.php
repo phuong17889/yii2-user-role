@@ -1,4 +1,6 @@
 <?php
+use navatech\role\models\Role;
+
 /**
  * Created by Navatech.
  * @project attravel
@@ -27,8 +29,9 @@ class LoginForm extends \dektrium\user\models\LoginForm {
 			'backendLoginValidate' => [
 				'login',
 				function($attribute) {
-					if ($this->user !== null) {
-						if ($this->user->getRole()->is_backend_login == 0) {
+					if ($this->user !== null && $this->user->getRole()->exists() && $role = $this->user->getRole()->one()) {
+						/** @var $role Role */
+						if ($role->is_backend_login == 0) {
 							if (RoleHelper::isMultiLanguage()) {
 								$this->addError($attribute, RoleHelper::translate('invalid_login_or_password'));
 							} else {
