@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
 							<?php foreach ($actions['actions'] as $action => $name) : ?>
 								<div class="checkbox col-sm-2">
 									<?= Html::hiddenInput('Role[permissions][' . $controller . '][' . $action . ']', 0) ?>
-									<?= Html::checkbox('Role[permissions][' . $controller . '][' . $action . ']', RoleChecker::isAuth($controller, $action), [
+									<?= Html::checkbox('Role[permissions][' . $controller . '][' . $action . ']', RoleChecker::isAuth($controller, $action, $model->id), [
 										'class' => 'ace',
 										'id'    => 'Role_permissions_' . str_replace('\\', '_', $controller) . '_' . $action,
 									]) ?>
