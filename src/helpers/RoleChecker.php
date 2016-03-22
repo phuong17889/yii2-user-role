@@ -18,12 +18,12 @@ class RoleChecker {
 
 	/**
 	 * @param        $controller
-	 * @param string $action
+	 * @param mixed $action
 	 * @param null   $role_id
 	 *
 	 * @return bool
 	 */
-	public static function isAuth($controller, $action = '', $role_id = null) {
+	public static function isAuth($controller, $action = null, $role_id = null) {
 		if (Yii::$app->user->isGuest) {
 			return false;
 		}
@@ -49,18 +49,22 @@ class RoleChecker {
 		$permissions = Json::decode($role->permissions);
 		if ($permissions != null) {
 			if (in_array($controller, array_keys($permissions))) {
-				if ($action == '') {
+				if ($action == null) {
 					return true;
 				} else {
 					foreach (Json::decode($role->permissions) as $controllerName => $actions) {
 						if ($controllerName != $controller) {
 							continue;
 						} else {
-							if (in_array($action, array_keys($actions))) {
-								return ($actions[$action] == 1);
-							} else {
-								return true;
+							if(!is_array($action)){
+								$action = [$action];
 							}
+							foreach ($action as $item) {
+								if (in_array($item, array_keys($actions))) {
+									return ($actions[$item] == 1);
+								}
+							}
+							return true;
 						}
 					}
 					return false;
