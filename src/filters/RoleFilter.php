@@ -39,9 +39,9 @@ class RoleFilter extends Behavior {
 			return true;
 		} else {
 			if (RoleHelper::isMultiLanguage()) {
-				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'));
+				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'), 403);
 			} else {
-				throw new ForbiddenHttpException('Bạn không được phép truy cập!');
+				throw new ForbiddenHttpException('Bạn không được phép truy cập!', 403);
 			}
 		}
 	}
