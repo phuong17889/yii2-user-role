@@ -11,6 +11,7 @@ namespace navatech\role\filters;
 
 use navatech\role\helpers\RoleChecker;
 use navatech\role\helpers\RoleHelper;
+use Yii;
 use yii\base\ActionEvent;
 use yii\base\Behavior;
 use yii\web\Controller;
@@ -40,6 +41,8 @@ class RoleFilter extends Behavior {
 		} else {
 			if (RoleHelper::isMultiLanguage()) {
 				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'), 403);
+			} else if (Yii::$app->user->isGuest) {
+				Yii::$app->user->loginRequired();
 			} else {
 				throw new ForbiddenHttpException('Bạn không được phép truy cập!', 403);
 			}
