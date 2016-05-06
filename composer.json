@@ -8,7 +8,7 @@
 	],
 	"type" : "yii2-extension",
 	"license" : "MIT",
-	"minimum-stability" : "dev",
+	"homepage" : "https://navatech.vn",
 	"support" : {
 		"source" : "https://github.com/navatech/yii2-user-role"
 	},
@@ -19,8 +19,7 @@
 		}
 	],
 	"require" : {
-		"yiisoft/yii2" : "^2.0.5",
-		"yiisoft/yii2-bootstrap" : "@dev",
+		"navatech/yii2-navatech-base" : "@dev",
 		"dektrium/yii2-user" : "@dev"
 	},
 	"autoload" : {
