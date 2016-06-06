@@ -9,6 +9,7 @@
  */
 namespace navatech\role\filters;
 
+use navatech\base\Module;
 use navatech\role\helpers\RoleChecker;
 use navatech\role\helpers\RoleHelper;
 use Yii;
@@ -22,8 +23,6 @@ class RoleFilter extends Behavior {
 	public        $actions = [];
 
 	public        $name    = '';
-
-	public static $a;
 
 	/**
 	 * Declares event handlers for the [[owner]]'s events.
@@ -39,7 +38,7 @@ class RoleFilter extends Behavior {
 		if (RoleChecker::isAuth($controller, $action)) {
 			return true;
 		} else {
-			if (RoleHelper::isMultiLanguage()) {
+			if (Module::hasMultiLanguage()) {
 				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'), 403);
 			} else if (Yii::$app->user->isGuest) {
 				Yii::$app->user->loginRequired();

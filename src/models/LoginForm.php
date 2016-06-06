@@ -11,6 +11,7 @@ use navatech\role\models\Role;
  */
 namespace navatech\role\models;
 
+use navatech\base\Module;
 use navatech\role\helpers\RoleHelper;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -32,7 +33,7 @@ class LoginForm extends \dektrium\user\models\LoginForm {
 					if ($this->user !== null && $this->user->getRole()->exists() && $role = $this->user->getRole()->one()) {
 						/** @var $role Role */
 						if ($role->is_backend_login == 0) {
-							if (RoleHelper::isMultiLanguage()) {
+							if (Module::hasMultiLanguage()) {
 								$this->addError($attribute, RoleHelper::translate('invalid_login_or_password'));
 							} else {
 								$this->addError($attribute, Yii::t('user', 'Invalid login or password'));

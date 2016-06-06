@@ -1,6 +1,7 @@
 <?php
 namespace navatech\role\controllers;
 
+use navatech\base\Module;
 use navatech\role\filters\RoleFilter;
 use navatech\role\helpers\RoleHelper;
 use navatech\role\models\Role;
@@ -28,13 +29,13 @@ class DefaultController extends Controller {
 			],
 			'role'  => [
 				'class'   => RoleFilter::className(),
-				'name'    => RoleHelper::isMultiLanguage() ? RoleHelper::translate('role') : 'Phân quyền',
+				'name'    => Module::hasMultiLanguage() ? RoleHelper::translate('role') : 'Phân quyền',
 				'actions' => [
-					'index'  => RoleHelper::isMultiLanguage() ? RoleHelper::translate('index') : 'Danh sách',
-					'create' => RoleHelper::isMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới',
-					'update' => RoleHelper::isMultiLanguage() ? RoleHelper::translate('update') : 'Cập nhật',
-					'delete' => RoleHelper::isMultiLanguage() ? RoleHelper::translate('delete') : 'Xóa',
-					'view'   => RoleHelper::isMultiLanguage() ? RoleHelper::translate('view') : 'Chi tiết',
+					'index'  => Module::hasMultiLanguage() ? RoleHelper::translate('index') : 'Danh sách',
+					'create' => Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới',
+					'update' => Module::hasMultiLanguage() ? RoleHelper::translate('update') : 'Cập nhật',
+					'delete' => Module::hasMultiLanguage() ? RoleHelper::translate('delete') : 'Xóa',
+					'view'   => Module::hasMultiLanguage() ? RoleHelper::translate('view') : 'Chi tiết',
 				],
 			],
 		];

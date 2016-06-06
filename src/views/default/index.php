@@ -1,15 +1,20 @@
 <?php
+use navatech\base\Module;
 use navatech\role\helpers\RoleHelper;
 use navatech\role\models\Role;
+use yii\bootstrap\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel navatech\role\models\RoleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title                   = RoleHelper::isMultiLanguage() ? RoleHelper::translate('user_role') : 'Nhóm thành viên';
+$this->title                   = Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : 'Nhóm thành viên';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<p>
+	<?= Html::a(Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêfvm mới', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
 <div class="role-index">
 
 	<?php Pjax::begin(); ?>

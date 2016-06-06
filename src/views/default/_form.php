@@ -1,4 +1,5 @@
 <?php
+use navatech\base\Module;
 use navatech\role\helpers\RoleChecker;
 use navatech\role\helpers\RoleHelper;
 use yii\helpers\Html;
@@ -58,7 +59,7 @@ use yii\widgets\ActiveForm;
 			<?php endforeach; ?>
 		</div>
 		<div class="form-group">
-			<?= Html::submitButton($model->isNewRecord ? (RoleHelper::isMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới') : (RoleHelper::isMultiLanguage() ? RoleHelper::translate('update') : 'Cập nhật'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+			<?= Html::submitButton($model->isNewRecord ? (Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới') : (Module::hasMultiLanguage() ? RoleHelper::translate('update') : 'Cập nhật'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		</div>
 		<?php ActiveForm::end(); ?>
 	</div>

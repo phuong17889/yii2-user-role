@@ -11,7 +11,7 @@ namespace navatech\role;
 
 use Yii;
 
-class Module extends \yii\base\Module {
+class Module extends \navatech\base\Module {
 
 	const VERSION = '1.0.0';
 

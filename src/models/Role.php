@@ -1,6 +1,7 @@
 <?php
 namespace navatech\role\models;
 
+use navatech\base\Module;
 use navatech\role\helpers\RoleHelper;
 use Yii;
 use yii\db\ActiveRecord;
@@ -53,9 +54,9 @@ class Role extends ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id'               => Yii::t('app', 'ID'),
-			'name'             => RoleHelper::isMultiLanguage() ? RoleHelper::translate('user_role') : 'Nhóm thành viên',
-			'permissions'      => RoleHelper::isMultiLanguage() ? RoleHelper::translate('permission') : 'Quyền hạn',
-			'is_backend_login' => RoleHelper::isMultiLanguage() ? RoleHelper::translate('is_backend_login') : 'Đăng nhập mục quản trị',
+			'name'             => Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : 'Nhóm thành viên',
+			'permissions'      => Module::hasMultiLanguage() ? RoleHelper::translate('permission') : 'Quyền hạn',
+			'is_backend_login' => Module::hasMultiLanguage() ? RoleHelper::translate('is_backend_login') : 'Đăng nhập mục quản trị',
 		];
 	}
 
@@ -71,8 +72,8 @@ class Role extends ActiveRecord {
 
 	public static function is_backend_login_array() {
 		return [
-			RoleHelper::isMultiLanguage() ? RoleHelper::translate('no') : 'Không',
-			RoleHelper::isMultiLanguage() ? RoleHelper::translate('yes') : 'Có',
+			Module::hasMultiLanguage() ? RoleHelper::translate('no') : 'Không',
+			Module::hasMultiLanguage() ? RoleHelper::translate('yes') : 'Có',
 		];
 	}
 }

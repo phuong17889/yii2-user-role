@@ -99,13 +99,6 @@ class RoleHelper extends ArrayHelper {
 	}
 
 	/**
-	 * @return bool
-	 */
-	public static function isMultiLanguage() {
-		return class_exists('navatech\\language\\MultiLanguage');
-	}
-
-	/**
 	 * @param $name
 	 *
 	 * @return mixed
