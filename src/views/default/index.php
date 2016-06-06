@@ -13,7 +13,7 @@ $this->title                   = Module::hasMultiLanguage() ? RoleHelper::transl
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <p>
-	<?= Html::a(Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêfvm mới', ['create'], ['class' => 'btn btn-success']) ?>
+	<?= Html::a(Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới', ['create'], ['class' => 'btn btn-success']) ?>
 </p>
 <div class="role-index">
 
