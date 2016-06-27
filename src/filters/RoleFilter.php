@@ -38,10 +38,10 @@ class RoleFilter extends Behavior {
 		if (RoleChecker::isAuth($controller, $action)) {
 			return true;
 		} else {
-			if (Module::hasMultiLanguage()) {
-				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'), 403);
-			} else if (Yii::$app->user->isGuest) {
+			if (Yii::$app->user->isGuest) {
 				Yii::$app->user->loginRequired();
+			} else if (Module::hasMultiLanguage()) {
+				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'), 403);
 			} else {
 				throw new ForbiddenHttpException('Bạn không được phép truy cập!', 403);
 			}
