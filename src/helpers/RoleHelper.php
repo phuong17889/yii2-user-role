@@ -15,7 +15,9 @@ use RecursiveIteratorIterator;
 use ReflectionClass;
 use ReflectionMethod;
 use RegexIterator;
+use UnexpectedValueException;
 use Yii;
+use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
 
 class RoleHelper extends ArrayHelper {
@@ -24,6 +26,7 @@ class RoleHelper extends ArrayHelper {
 	 * @param null $paths
 	 *
 	 * @return array
+	 * @throws ErrorException
 	 */
 	public static function getControllers($paths = null) {
 		if ($paths === null) {
@@ -34,31 +37,35 @@ class RoleHelper extends ArrayHelper {
 		}
 		$namespaces = [];
 		foreach ($paths as $path) {
-			$path     = Yii::getAlias('@' . str_replace('\\', '/', $path));
-			$fqcns    = array();
-			$allFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
-			$phpFiles = new RegexIterator($allFiles, '/\.php$/');
-			foreach ($phpFiles as $phpFile) {
-				$content   = file_get_contents($phpFile->getRealPath());
-				$tokens    = token_get_all($content);
-				$namespace = '';
-				for ($index = 0; isset($tokens[$index]); $index ++) {
-					if (!isset($tokens[$index][0])) {
-						continue;
-					}
-					if (T_NAMESPACE === $tokens[$index][0]) {
-						$index += 2;
-						while (isset($tokens[$index]) && is_array($tokens[$index])) {
-							$namespace .= $tokens[$index ++][1];
+			$path  = Yii::getAlias('@' . str_replace('\\', '/', $path));
+			$fqcns = array();
+			try {
+				$allFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
+				$phpFiles = new RegexIterator($allFiles, '/\.php$/');
+				foreach ($phpFiles as $phpFile) {
+					$content   = file_get_contents($phpFile->getRealPath());
+					$tokens    = token_get_all($content);
+					$namespace = '';
+					for ($index = 0; isset($tokens[$index]); $index ++) {
+						if (!isset($tokens[$index][0])) {
+							continue;
+						}
+						if (T_NAMESPACE === $tokens[$index][0]) {
+							$index += 2;
+							while (isset($tokens[$index]) && is_array($tokens[$index])) {
+								$namespace .= $tokens[$index ++][1];
+							}
+						}
+						if (T_CLASS === $tokens[$index][0]) {
+							$index += 2;
+							$fqcns[] = $namespace . '\\' . $tokens[$index][1];
 						}
 					}
-					if (T_CLASS === $tokens[$index][0]) {
-						$index += 2;
-						$fqcns[] = $namespace . '\\' . $tokens[$index][1];
-					}
 				}
+				$namespaces = ArrayHelper::merge($namespaces, $fqcns);
+			} catch (UnexpectedValueException $e) {
+				throw new ErrorException('Wrong configure. Please recheck role\'s controllers path in your config file.', 2, 1, __DIR__ . '/RoleHelper.php', 67, $e);
 			}
-			$namespaces = ArrayHelper::merge($namespaces, $fqcns);
 		}
 		return $namespaces;
 	}
