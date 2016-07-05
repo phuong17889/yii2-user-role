@@ -20,9 +20,9 @@ use yii\web\ForbiddenHttpException;
 
 class RoleFilter extends Behavior {
 
-	public        $actions = [];
+	public $actions = [];
 
-	public        $name    = '';
+	public $name    = '';
 
 	/**
 	 * Declares event handlers for the [[owner]]'s events.
@@ -43,7 +43,7 @@ class RoleFilter extends Behavior {
 			} else if (Module::hasMultiLanguage()) {
 				throw new ForbiddenHttpException(RoleHelper::translate('forbidden'), 403);
 			} else {
-				throw new ForbiddenHttpException('Bạn không được phép truy cập!', 403);
+				throw new ForbiddenHttpException(Yii::t('role', 'You are not allowed to perform this action.'), 403);
 			}
 		}
 	}

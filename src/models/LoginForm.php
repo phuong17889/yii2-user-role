@@ -1,9 +1,7 @@
 <?php
-use navatech\role\models\Role;
-
 /**
  * Created by Navatech.
- * @project attravel
+ * @project yii2-user-role
  * @author  Phuong
  * @email   phuong17889[at]gmail.com
  * @date    27/02/2016
@@ -36,7 +34,7 @@ class LoginForm extends \dektrium\user\models\LoginForm {
 							if (Module::hasMultiLanguage()) {
 								$this->addError($attribute, RoleHelper::translate('invalid_login_or_password'));
 							} else {
-								$this->addError($attribute, Yii::t('user', 'Invalid login or password'));
+								$this->addError($attribute, Yii::t('role', 'Invalid login or password'));
 							}
 						}
 					}

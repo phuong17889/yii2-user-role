@@ -1,4 +1,12 @@
 <?php
+/**
+ * Created by Navatech.
+ * @project yii2-user-role
+ * @author  Phuong
+ * @email   phuong17889[at]gmail.com
+ * @date    26/02/2016
+ * @time    11:50 PM
+ */
 namespace navatech\role\controllers;
 
 use navatech\base\Module;
@@ -29,13 +37,13 @@ class DefaultController extends Controller {
 			],
 			'role'  => [
 				'class'   => RoleFilter::className(),
-				'name'    => Module::hasMultiLanguage() ? RoleHelper::translate('role') : 'Phân quyền',
+				'name'    => Module::hasMultiLanguage() ? RoleHelper::translate('role') : Yii::t('role', 'Role'),
 				'actions' => [
-					'index'  => Module::hasMultiLanguage() ? RoleHelper::translate('index') : 'Danh sách',
-					'create' => Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới',
-					'update' => Module::hasMultiLanguage() ? RoleHelper::translate('update') : 'Cập nhật',
-					'delete' => Module::hasMultiLanguage() ? RoleHelper::translate('delete') : 'Xóa',
-					'view'   => Module::hasMultiLanguage() ? RoleHelper::translate('view') : 'Chi tiết',
+					'index'  => Module::hasMultiLanguage() ? RoleHelper::translate('index') : Yii::t('role', 'List'),
+					'create' => Module::hasMultiLanguage() ? RoleHelper::translate('create') : Yii::t('role', 'Create'),
+					'update' => Module::hasMultiLanguage() ? RoleHelper::translate('update') : Yii::t('role', 'Update'),
+					'delete' => Module::hasMultiLanguage() ? RoleHelper::translate('delete') : Yii::t('role', 'Delete'),
+					'view'   => Module::hasMultiLanguage() ? RoleHelper::translate('view') : Yii::t('role', 'View'),
 				],
 			],
 		];
@@ -96,19 +104,6 @@ class DefaultController extends Controller {
 	}
 
 	/**
-	 * Deletes an existing Role model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 *
-	 * @param integer $id
-	 *
-	 * @return mixed
-	 */
-	public function actionDelete($id) {
-		$this->findModel($id)->delete();
-		return $this->redirect(['index']);
-	}
-
-	/**
 	 * Finds the Role model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 *
@@ -123,5 +118,18 @@ class DefaultController extends Controller {
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
+	}
+
+	/**
+	 * Deletes an existing Role model.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 *
+	 * @param integer $id
+	 *
+	 * @return mixed
+	 */
+	public function actionDelete($id) {
+		$this->findModel($id)->delete();
+		return $this->redirect(['index']);
 	}
 }

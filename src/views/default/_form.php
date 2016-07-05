@@ -37,12 +37,20 @@ use yii\widgets\ActiveForm;
 		<hr>
 		<div class="form-group">
 			<?= Html::activeLabel($model, 'permissions') ?>
-			<?php foreach (RoleHelper::getControllers() as $controller) : ?>
+			<?php foreach (RoleHelper::getControllers() as $id => $controller) : ?>
 				<?php $actions = RoleHelper::getActions($controller); ?>
 				<?php if ($actions != null) : ?>
 					<div class="row well">
-						<?= Html::label($actions['name'], null, ['style' => 'font-weight:bold;']) ?>
-						<div class="col-sm-12">
+						<?= Html::checkbox('checkall', false, [
+							'class' => 'ace',
+							'id'    => $id,
+							'title' => Yii::t('role', 'Toggle all'),
+						]) ?>
+						<?= Html::label($actions['name'], $id, [
+							'style' => 'font-weight:bold;',
+							'class' => 'lbl',
+						]) ?>
+						<div class="col-sm-12 checkbox-list">
 							<?php foreach ($actions['actions'] as $action => $name) : ?>
 								<div class="checkbox col-sm-2">
 									<?= Html::hiddenInput('Role[permissions][' . $controller . '][' . $action . ']', 0) ?>
@@ -59,8 +67,18 @@ use yii\widgets\ActiveForm;
 			<?php endforeach; ?>
 		</div>
 		<div class="form-group">
-			<?= Html::submitButton($model->isNewRecord ? (Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới') : (Module::hasMultiLanguage() ? RoleHelper::translate('update') : 'Cập nhật'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+			<?= Html::submitButton($model->isNewRecord ? (Module::hasMultiLanguage() ? RoleHelper::translate('create') : Yii::t('role', 'Create')) : (Module::hasMultiLanguage() ? RoleHelper::translate('update') : Yii::t('role', 'Update')), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		</div>
 		<?php ActiveForm::end(); ?>
 	</div>
 </div>
+<script>
+	$(document).on("click", "input[name='checkall']", function() {
+		var th = $(this);
+		if(th.is(":checked")) {
+			th.closest(".row").find(".checkbox-list").find("input[type='checkbox']").prop("checked", true);
+		} else {
+			th.closest(".row").find(".checkbox-list").find("input[type='checkbox']").prop("checked", false);
+		}
+	});
+</script>

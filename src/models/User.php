@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by Navatech.
- * @project attravel
+ * @project yii2-user-role
  * @author  Phuong
  * @email   phuong17889[at]gmail.com
  * @date    27/02/2016

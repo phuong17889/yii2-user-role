@@ -64,7 +64,7 @@ class RoleHelper extends ArrayHelper {
 				}
 				$namespaces = ArrayHelper::merge($namespaces, $fqcns);
 			} catch (UnexpectedValueException $e) {
-				throw new ErrorException('Wrong configure. Please recheck role\'s controllers path in your config file.', 2, 1, __DIR__ . '/RoleHelper.php', 67, $e);
+				throw new ErrorException(Yii::t('role', 'Wrong configure. Please recheck role\'s controllers path in your config file. (app-id/config/web|main.php)'), 2, 1, __DIR__ . '/RoleHelper.php', 67, $e);
 			}
 		}
 		return $namespaces;

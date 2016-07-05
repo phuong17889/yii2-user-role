@@ -2,18 +2,21 @@
 use navatech\base\Module;
 use navatech\role\helpers\RoleHelper;
 use navatech\role\models\Role;
+use navatech\role\models\RoleSearch;
 use yii\bootstrap\Html;
+use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
+use yii\web\View;
 use yii\widgets\Pjax;
 
-/* @var $this yii\web\View */
-/* @var $searchModel navatech\role\models\RoleSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title                   = Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : 'Nhóm thành viên';
+/* @var $this View */
+/* @var $searchModel RoleSearch */
+/* @var $dataProvider ActiveDataProvider */
+$this->title                   = Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : Yii::t('role', 'User role');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <p>
-	<?= Html::a(Module::hasMultiLanguage() ? RoleHelper::translate('create') : 'Thêm mới', ['create'], ['class' => 'btn btn-success']) ?>
+	<?= Html::a(Module::hasMultiLanguage() ? RoleHelper::translate('create') : Yii::t('role', 'Create'), ['create'], ['class' => 'btn btn-success']) ?>
 </p>
 <div class="role-index">
 
@@ -34,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			[
 				'class'    => 'yii\grid\ActionColumn',
-				'template' => '{update}{delete}',
+				'template' => '{update} {delete}',
 			],
 		],
 	]); ?>

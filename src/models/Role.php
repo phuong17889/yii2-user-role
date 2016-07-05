@@ -1,4 +1,12 @@
 <?php
+/**
+ * Created by Navatech.
+ * @project yii2-user-role
+ * @author  Phuong
+ * @email   phuong17889[at]gmail.com
+ * @date    27/02/2016
+ * @time    12:15 SA
+ */
 namespace navatech\role\models;
 
 use navatech\base\Module;
@@ -22,6 +30,13 @@ class Role extends ActiveRecord {
 	 */
 	public static function tableName() {
 		return 'role';
+	}
+
+	public static function is_backend_login_array() {
+		return [
+			Module::hasMultiLanguage() ? RoleHelper::translate('no') : Yii::t('role', 'No'),
+			Module::hasMultiLanguage() ? RoleHelper::translate('yes') : Yii::t('role', 'Yes'),
+		];
 	}
 
 	/**
@@ -54,9 +69,9 @@ class Role extends ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id'               => Yii::t('app', 'ID'),
-			'name'             => Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : 'Nhóm thành viên',
-			'permissions'      => Module::hasMultiLanguage() ? RoleHelper::translate('permission') : 'Quyền hạn',
-			'is_backend_login' => Module::hasMultiLanguage() ? RoleHelper::translate('is_backend_login') : 'Đăng nhập mục quản trị',
+			'name'             => Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : Yii::t('role', 'User role'),
+			'permissions'      => Module::hasMultiLanguage() ? RoleHelper::translate('permission') : Yii::t('role', 'Permission'),
+			'is_backend_login' => Module::hasMultiLanguage() ? RoleHelper::translate('is_backend_login') : Yii::t('role', 'Backend login'),
 		];
 	}
 
@@ -68,12 +83,5 @@ class Role extends ActiveRecord {
 			$this->permissions = Json::encode($this->permissions);
 		}
 		return parent::beforeSave($insert);
-	}
-
-	public static function is_backend_login_array() {
-		return [
-			Module::hasMultiLanguage() ? RoleHelper::translate('no') : 'Không',
-			Module::hasMultiLanguage() ? RoleHelper::translate('yes') : 'Có',
-		];
 	}
 }

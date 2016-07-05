@@ -26,5 +26,8 @@
 		"psr-4" : {
 			"navatech\\role\\" : "src"
 		}
+	},
+	"extra" : {
+		"bootstrap" : "navatech\\role\\Bootstrap"
 	}
 }
