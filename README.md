@@ -4,6 +4,11 @@ Install
 ~~~
 composer require navatech/yii2-user-role "@dev"
 ~~~
+### Run migrate
+if you're never used `dektrium/yii2-user` before, you should run it
+~~~
+php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
+~~~
 ~~~
 php yii migrate/up --migrationPath=@navatech/role/migrations
 ~~~
