@@ -17,6 +17,18 @@ use yii\db\ActiveQuery;
 class User extends \dektrium\user\models\User {
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function rules() {
+		$rules   = parent::rules();
+		$rules[] = [
+			['role_id'],
+			'integer',
+		];
+		return $rules;
+	}
+
+	/**
 	 * @return ActiveQuery
 	 */
 	public function getRole() {
