@@ -76,16 +76,17 @@ class RoleHelper extends ArrayHelper {
 	 * @return array
 	 */
 	public static function getActions($namespaces) {
+		error_reporting(E_ALL & ~E_STRICT);
 		if (!is_array($namespaces)) {
 			$namespaces = [$namespaces];
 		}
 		$response = [];
 		foreach ($namespaces as $namespace) {
-			$class   = new ReflectionClass($namespace);
-			$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+			$class     = new ReflectionClass($namespace);
+			$methods   = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+			$behaviors = $namespace::behaviors();
 			foreach ($methods as $method) {
 				if ($method->class === $namespace && strpos($method->name, 'action') === 0) {
-					$behaviors = $namespace::behaviors();
 					if (isset($behaviors['role']) && $behaviors['role']['class'] === RoleFilter::className()) {
 						$actions = [];
 						foreach ($behaviors['role']['actions'] as $key => $action) {
