@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
 	input[type=checkbox].ace + .lbl::before, input[type=radio].ace + .lbl::before {
 		margin-right: 5px !important;
 	}
+	.row.well{
+		background: #ededed;
+	}
 </style>
 <div class="col-sm-12">
 	<div class="role-form">
@@ -23,33 +26,34 @@ use yii\widgets\ActiveForm;
 			],
 		]); ?>
 		<?php echo $form->field($model, 'name', [
-			'template'     => '{label}<div class="col-sm-12">{input}{error}</div>',
-			'labelOptions' => ['class' => 'control-label'],
-		])->textInput(['class' => 'col-sm-5']); ?>
+			'template'     => '{label}<div class="col-sm-10">{input}{error}</div>',
+			'labelOptions' => ['class' => 'col-sm-2 control-label'],
+		])->textInput(['class' => 'form-control']); ?>
 
 		<?= $form->field($model, 'is_backend_login', [
-			'template'     => '{label}<div class="col-sm-12">{input}{error}</div>',
-			'labelOptions' => ['class' => 'control-label'],
+			'template'     => '{label}<div class="col-sm-2">{input}{error}</div>',
+			'labelOptions' => ['class' => 'col-sm-2 control-label'],
 		])->dropDownList([
 			'No',
 			'Yes',
-		], ['class' => 'col-sm-1']) ?>
-		<hr>
+		], ['class' => 'form-control']) ?>
 		<div class="form-group">
 			<?= Html::activeLabel($model, 'permissions') ?>
 			<?php foreach (RoleHelper::getControllers() as $id => $controller) : ?>
 				<?php $actions = RoleHelper::getActions($controller); ?>
 				<?php if ($actions != null) : ?>
 					<div class="row well">
-						<?= Html::checkbox('checkall', false, [
-							'class' => 'ace',
-							'id'    => $id,
-							'title' => Yii::t('role', 'Toggle all'),
-						]) ?>
-						<?= Html::label($actions['name'], $id, [
-							'style' => 'font-weight:bold;',
-							'class' => 'lbl',
-						]) ?>
+						<div class="checkbox">
+							<?= Html::checkbox('checkall', false, [
+								'class' => 'ace',
+								'id'    => $id,
+								'title' => Yii::t('role', 'Toggle all'),
+							]) ?>
+							<?= Html::label($actions['name'], $id, [
+								'style' => 'font-weight:bold;',
+								'class' => 'lbl',
+							]) ?>
+						</div>
 						<div class="col-sm-12 checkbox-list">
 							<?php foreach ($actions['actions'] as $action => $name) : ?>
 								<div class="checkbox col-sm-2">
