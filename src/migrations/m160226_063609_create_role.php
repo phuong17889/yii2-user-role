@@ -43,6 +43,7 @@ class m160226_063609_create_role extends Migration {
 			'permissions'      => '',
 			'is_backend_login' => 0,
 		]);
+		$this->addForeignKey('fk_user_role_id', '{{%user}}', 'role_id', '{{%role}}', 'id', 'CASCADE', 'CASCADE');
 	}
 
 	public function down() {
