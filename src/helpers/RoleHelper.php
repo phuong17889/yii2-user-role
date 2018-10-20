@@ -7,6 +7,7 @@
  * @date    26/02/2016
  * @time    2:40 CH
  */
+
 namespace navatech\role\helpers;
 
 use navatech\role\filters\RoleFilter;
@@ -58,16 +59,18 @@ class RoleHelper extends ArrayHelper {
 						}
 						if (T_CLASS === $tokens[$index][0]) {
 							$index += 2;
-							$fqcns[] = $namespace . '\\' . $tokens[$index][1];
+							if (isset($tokens[$index][1]) && strpos($tokens[$index][1], 'Controller') !== false) {
+								$fqcns[] = $namespace . '\\' . $tokens[$index][1];
+							}
 						}
 					}
 				}
 				$namespaces = ArrayHelper::merge($namespaces, $fqcns);
 			} catch (UnexpectedValueException $e) {
-				throw new ErrorException(Yii::t('role', 'Wrong configure. Please recheck role\'s controllers path in your config file. (app-id/config/web|main.php)'), 2, 1, __DIR__ . '/RoleHelper.php', 67, $e);
+				throw new ErrorException(Yii::t('role', 'Wrong configure. Please recheck role\'s controllers path in your config file. (app-id/config/web|main.php)'), 2, 1, __DIR__ . '/RoleHelper.php', 70, $e);
 			}
 		}
-		return $namespaces;
+		return array_unique($namespaces);
 	}
 
 	/**
