@@ -87,7 +87,10 @@ class RoleHelper extends ArrayHelper {
 		foreach ($namespaces as $namespace) {
 			$class     = new ReflectionClass($namespace);
 			$methods   = $class->getMethods(ReflectionMethod::IS_PUBLIC);
-			$behaviors = $namespace::behaviors();
+			$behaviors = call_user_func([
+				$namespace,
+				'behaviors',
+			]);
 			foreach ($methods as $method) {
 				if ($method->class === $namespace && strpos($method->name, 'action') === 0) {
 					if (isset($behaviors['role']) && $behaviors['role']['class'] === RoleFilter::className()) {
