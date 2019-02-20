@@ -19,6 +19,7 @@ use RegexIterator;
 use UnexpectedValueException;
 use Yii;
 use yii\base\ErrorException;
+use yii\base\Module;
 use yii\helpers\ArrayHelper;
 
 class RoleHelper extends ArrayHelper {
@@ -79,7 +80,7 @@ class RoleHelper extends ArrayHelper {
 	 * @return array
 	 */
 	public static function getActions($namespaces) {
-		error_reporting(E_ALL & ~E_STRICT);
+		error_reporting(0);
 		if (!is_array($namespaces)) {
 			$namespaces = [$namespaces];
 		}
