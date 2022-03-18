@@ -1,46 +1,57 @@
 # yii2-user-role
+
 Install
 ---
+
 ~~~
-composer require navatech/yii2-user-role "@dev"
+composer require phuong17889/yii2-user-role "@dev"
 ~~~
+
 ### Run migrate
+
 if you're never used `dektrium/yii2-user` before, you should run it
+
 ~~~
 php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
 ~~~
+
 ~~~
-php yii migrate/up --migrationPath=@navatech/role/migrations
+php yii migrate/up --migrationPath=@phuong17889/role/migrations
 ~~~
+
 Config:
 ---
+
 ## in config file
+
 ~~~
 [php]
 'modules'    => [
     'user'  => [
         'class'              => 'dektrium\user\Module',
         'modelMap'           => [
-            'User'      => 'navatech\role\models\User',//IMPORTANT & REQUIRED, change to your User model if overridden
-            'LoginForm' => 'navatech\role\models\LoginForm',//IMPORTANT & REQUIRED
+            'User'      => 'phuong17889\role\models\User',//IMPORTANT & REQUIRED, change to your User model if overridden
+            'LoginForm' => 'phuong17889\role\models\LoginForm',//IMPORTANT & REQUIRED
         ],
     ],
    'role'  => [
-        'class'               => 'navatech\role\Module',
+        'class'               => 'phuong17889\role\Module',
         'controllers'         => [ //namespaces of controllers
             'app\controllers',
-            'navatech\role\controllers',
+            'phuong17889\role\controllers',
         ],
     ],
 ],
 ~~~
 
 ## in model User, if you override it
+
 ~~~
-class User extends \navatech\role\models\User
+class User extends \phuong17889\role\models\User
 ~~~
 
 ## In every controller you want to check role
+
 ~~~
 class SiteController extends Controller {
 
@@ -63,8 +74,9 @@ class SiteController extends Controller {
 ~~~
 
 ## In everywhere:
+
 ~~~
-use navatech\role\helpers\RoleChecker;
+use phuong17889\role\helpers\RoleChecker;
 ...
 //public static function isAuth($controller, $action = '', $role_id = null)
 $boolean = RoleChecker::isAuth(SiteController::className(), 'index', Yii::$app->user->identity->getRoleId());

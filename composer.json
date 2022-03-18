@@ -1,33 +1,33 @@
 {
-	"name" : "navatech/yii2-user-role",
-	"description" : "This is simple user role for Yii2",
-	"keywords" : [
-		"yii2",
-		"user role",
-		"role base"
-	],
-	"type" : "yii2-extension",
-	"license" : "MIT",
-	"homepage" : "https://navatech.vn",
-	"support" : {
-		"source" : "https://github.com/navatech/yii2-user-role"
-	},
-	"authors" : [
-		{
-			"name" : "Le Phuong",
-			"email" : "phuong17889@gmail.com"
-		}
-	],
-	"require" : {
-		"navatech/yii2-navatech-base" : "@dev",
-		"dektrium/yii2-user" : "@dev"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"navatech\\role\\" : "src"
-		}
-	},
-	"extra" : {
-		"bootstrap" : "navatech\\role\\Bootstrap"
-	}
+  "name": "phuong17889/yii2-user-role",
+  "description": "This is simple user role for Yii2",
+  "keywords": [
+    "yii2",
+    "user role",
+    "role base"
+  ],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "homepage": "https://lephuong.org",
+  "support": {
+    "source": "https://github.com/phuong17889/yii2-user-role"
+  },
+  "authors": [
+    {
+      "name": "Le Phuong",
+      "email": "phuong17889@gmail.com"
+    }
+  ],
+  "require": {
+    "phuong17889/yii2-base": "@dev",
+    "dektrium/yii2-user": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "phuong17889\\role\\": "src"
+    }
+  },
+  "extra": {
+    "bootstrap": "phuong17889\\role\\Bootstrap"
+  }
 }

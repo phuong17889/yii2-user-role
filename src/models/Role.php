@@ -1,16 +1,17 @@
 <?php
 /**
- * Created by Navatech.
+ * Created by phuong17889.
  * @project yii2-user-role
  * @author  Phuong
  * @email   phuong17889[at]gmail.com
  * @date    27/02/2016
  * @time    12:15 SA
  */
-namespace navatech\role\models;
 
-use navatech\base\Module;
-use navatech\role\helpers\RoleHelper;
+namespace phuong17889\role\models;
+
+use phuong17889\base\Module;
+use phuong17889\role\helpers\RoleHelper;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Json;
@@ -19,69 +20,75 @@ use yii\helpers\Json;
  * This is the model class for table "role".
  *
  * @property integer $id
- * @property string  $name
- * @property string  $permissions
+ * @property string $name
+ * @property string $permissions
  * @property integer $is_backend_login
  */
-class Role extends ActiveRecord {
+class Role extends ActiveRecord
+{
 
-	/**
-	 * @inheritdoc
-	 */
-	public static function tableName() {
-		return 'role';
-	}
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'role';
+    }
 
-	public static function is_backend_login_array() {
-		return [
-			Module::hasMultiLanguage() ? RoleHelper::translate('no') : Yii::t('role', 'No'),
-			Module::hasMultiLanguage() ? RoleHelper::translate('yes') : Yii::t('role', 'Yes'),
-		];
-	}
+    public static function is_backend_login_array()
+    {
+        return [
+            Module::hasMultiLanguage() ? RoleHelper::translate('no') : Yii::t('role', 'No'),
+            Module::hasMultiLanguage() ? RoleHelper::translate('yes') : Yii::t('role', 'Yes'),
+        ];
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function rules() {
-		return [
-			[
-				[
-					'name',
-					'permissions',
-				],
-				'required',
-			],
-			[
-				['is_backend_login'],
-				'integer',
-			],
-			[
-				['name'],
-				'string',
-				'max' => 255,
-			],
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [
+                [
+                    'name',
+                    'permissions',
+                ],
+                'required',
+            ],
+            [
+                ['is_backend_login'],
+                'integer',
+            ],
+            [
+                ['name'],
+                'string',
+                'max' => 255,
+            ],
+        ];
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function attributeLabels() {
-		return [
-			'id'               => Yii::t('app', 'ID'),
-			'name'             => Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : Yii::t('role', 'User role'),
-			'permissions'      => Module::hasMultiLanguage() ? RoleHelper::translate('permission') : Yii::t('role', 'Permission'),
-			'is_backend_login' => Module::hasMultiLanguage() ? RoleHelper::translate('is_backend_login') : Yii::t('role', 'Backend login'),
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'name' => Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : Yii::t('role', 'User role'),
+            'permissions' => Module::hasMultiLanguage() ? RoleHelper::translate('permission') : Yii::t('role', 'Permission'),
+            'is_backend_login' => Module::hasMultiLanguage() ? RoleHelper::translate('is_backend_login') : Yii::t('role', 'Backend login'),
+        ];
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public function beforeSave($insert) {
-		if (is_array($this->permissions)) {
-			$this->permissions = Json::encode($this->permissions);
-		}
-		return parent::beforeSave($insert);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public function beforeSave($insert)
+    {
+        if (is_array($this->permissions)) {
+            $this->permissions = Json::encode($this->permissions);
+        }
+        return parent::beforeSave($insert);
+    }
 }
