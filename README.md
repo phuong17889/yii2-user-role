@@ -17,7 +17,7 @@ Configuration
         'class' => 'dektrium\user\Module',
         'modelMap' => [
             'User' => 'phuongdev89\role\models\User',//IMPORTANT & REQUIRED, change to your User model if overridden
-            'LoginForm' => 'phuongdev89\role\models\LoginForm',//IMPORTANT & REQUIRED, change to your User model if overridden
+            'LoginForm' => 'phuongdev89\role\models\forms\LoginForm',//IMPORTANT & REQUIRED, change to your User model if overridden
         ],
     ],
    'role' => [
