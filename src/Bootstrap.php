@@ -33,5 +33,6 @@ class Bootstrap implements BootstrapInterface
                 'sourceLanguage' => 'en-US',
             ];
         }
+        Yii::setAlias('phuongdev89/user-role', __DIR__);
     }
 }
