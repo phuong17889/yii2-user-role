@@ -20,7 +20,7 @@ class m160226_063609_create_role extends Migration
         $this->insert('{{%role}}', [
             'name' => 'Administrator',
             'permissions' => Json::encode([
-                'phuong17889\role\controllers\DefaultController' => [
+                'phuongdev89\role\controllers\DefaultController' => [
                     'index' => 1,
                     'create' => 1,
                     'update' => 1,
@@ -32,7 +32,7 @@ class m160226_063609_create_role extends Migration
         $this->insert('{{%role}}', [
             'name' => 'Staff',
             'permissions' => Json::encode([
-                'phuong17889\role\controllers\DefaultController' => [
+                'phuongdev89\role\controllers\DefaultController' => [
                     'index' => 0,
                     'create' => 0,
                     'update' => 0,

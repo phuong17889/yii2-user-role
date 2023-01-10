@@ -1,18 +1,20 @@
 <?php
 
-use phuong17889\base\Module;
-use phuong17889\role\helpers\RoleHelper;
-use phuong17889\role\models\Role;
-use phuong17889\role\models\RoleSearch;
+use phuongdev89\base\Module;
+use phuongdev89\role\helpers\RoleHelper;
+use phuongdev89\role\models\Role;
+use phuongdev89\role\models\search\RoleSearch;
 use yii\bootstrap\Html;
 use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\web\View;
 use yii\widgets\Pjax;
 
-/* @var $this View */
-/* @var $searchModel RoleSearch */
-/* @var $dataProvider ActiveDataProvider */
+/**
+ * @var View $this
+ * @var RoleSearch $searchModel
+ * @var ActiveDataProvider $dataProvider
+ */
 $this->title = Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : Yii::t('role', 'User role');
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -1,17 +1,17 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    26/02/2016
  * @time    6:05 CH
  */
 
-namespace phuong17889\role\helpers;
+namespace phuongdev89\role\helpers;
 
-use phuong17889\role\models\Role;
-use phuong17889\role\models\User;
+use phuongdev89\role\models\Role;
+use phuongdev89\role\models\User;
 use Yii;
 use yii\helpers\Json;
 

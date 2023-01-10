@@ -1,17 +1,19 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    27/02/2016
  * @time    12:15 SA
  */
 
-namespace phuong17889\role\models;
+namespace phuongdev89\role\models\forms;
 
-use phuong17889\base\Module;
-use phuong17889\role\helpers\RoleHelper;
+use phuongdev89\base\Module;
+use phuongdev89\role\helpers\RoleHelper;
+use phuongdev89\role\models\Role;
+use phuongdev89\role\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 

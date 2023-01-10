@@ -1,14 +1,14 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    05/07/2016
  * @time    11:50 PM
  */
 
-namespace phuong17889\role;
+namespace phuongdev89\role;
 
 use yii\base\Application;
 use yii\base\BootstrapInterface;
@@ -28,7 +28,7 @@ class Bootstrap implements BootstrapInterface
     {
         if (!isset($app->get('i18n')->translations['role*'])) {
             $app->get('i18n')->translations['role*'] = [
-                'class' => PhpMessageSource::className(),
+                'class' => PhpMessageSource::class,
                 'basePath' => __DIR__ . '/messages',
                 'sourceLanguage' => 'en-US',
             ];

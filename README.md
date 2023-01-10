@@ -4,54 +4,62 @@ Install
 ---
 
 ~~~
-composer require phuong17889/yii2-user-role "@dev"
+composer require phuongdev89/yii2-user-role "@dev"
 ~~~
 
-### Run migrate
-
-if you're never used `dektrium/yii2-user` before, you should run it
-
-~~~
-php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
-~~~
-
-~~~
-php yii migrate/up --migrationPath=@phuong17889/role/migrations
-~~~
-
-Config:
+Configuration
 ---
-
-## in config file
-
+### in `backend/config/main.php` or `app/config/web.php`
 ~~~
 [php]
-'modules'    => [
-    'user'  => [
-        'class'              => 'dektrium\user\Module',
-        'modelMap'           => [
-            'User'      => 'phuong17889\role\models\User',//IMPORTANT & REQUIRED, change to your User model if overridden
-            'LoginForm' => 'phuong17889\role\models\LoginForm',//IMPORTANT & REQUIRED
+'modules' => [
+    'user' => [
+        'class' => 'dektrium\user\Module',
+        'modelMap' => [
+            'User' => 'phuongdev89\role\models\User',//IMPORTANT & REQUIRED, change to your User model if overridden
+            'LoginForm' => 'phuongdev89\role\models\LoginForm',//IMPORTANT & REQUIRED, change to your User model if overridden
         ],
     ],
-   'role'  => [
-        'class'               => 'phuong17889\role\Module',
-        'controllers'         => [ //namespaces of controllers
+   'role' => [
+        'class' => 'phuongdev89\role\Module',
+        'controllers' => [ 
+            //namespaces of controllers you want to control
             'app\controllers',
-            'phuong17889\role\controllers',
+            'phuongdev89\role\controllers',
         ],
     ],
 ],
 ~~~
 
-## in model User, if you override it
-
+### in `console/config/main.php` or `app/config/console.php`
 ~~~
-class User extends \phuong17889\role\models\User
+'controllerMap' => [
+    ...
+    'migrate'  => [
+        'class' => 'yii\console\controllers\MigrateController',
+        'migrationPath' => [
+            '@console/migrations',
+            '@vendor/dektrium/yii2-user/migrations',
+            '@phuongdev89/role/migrations',
+        ],
+    ],
+],
 ~~~
 
-## In every controller you want to check role
+### Run migrate
+~~~
+php yii migrate/up
+~~~
 
+Usage
+---
+
+### in model User, if you override it
+~~~
+class User extends \phuongdev89\role\models\User
+~~~
+
+### In every controller you want to check role
 ~~~
 class SiteController extends Controller {
 
@@ -72,11 +80,10 @@ class SiteController extends Controller {
     }
 }
 ~~~
-
-## In everywhere:
+### In everywhere:
 
 ~~~
-use phuong17889\role\helpers\RoleChecker;
+use phuongdev89\role\helpers\RoleChecker;
 ...
 //public static function isAuth($controller, $action = '', $role_id = null)
 $boolean = RoleChecker::isAuth(SiteController::className(), 'index', Yii::$app->user->identity->getRoleId());

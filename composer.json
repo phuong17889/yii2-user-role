@@ -1,5 +1,5 @@
 {
-  "name": "phuong17889/yii2-user-role",
+  "name": "phuongdev89/yii2-user-role",
   "description": "This is simple user role for Yii2",
   "keywords": [
     "yii2",
@@ -8,26 +8,25 @@
   ],
   "type": "yii2-extension",
   "license": "MIT",
-  "homepage": "https://lephuong.org",
   "support": {
-    "source": "https://github.com/phuong17889/yii2-user-role"
+    "source": "https://github.com/phuongdev89/yii2-user-role"
   },
   "authors": [
     {
-      "name": "Le Phuong",
-      "email": "phuong17889@gmail.com"
+      "name": "Phuong Dev",
+      "email": "phuongdev89@gmail.com"
     }
   ],
   "require": {
-    "phuong17889/yii2-base": "@dev",
+    "phuongdev89/yii2-base": "@dev",
     "dektrium/yii2-user": "@dev"
   },
   "autoload": {
     "psr-4": {
-      "phuong17889\\role\\": "src"
+      "phuongdev89\\role\\": "src"
     }
   },
   "extra": {
-    "bootstrap": "phuong17889\\role\\Bootstrap"
+    "bootstrap": "phuongdev89\\role\\Bootstrap"
   }
 }

@@ -1,14 +1,18 @@
 <?php
 
-use phuong17889\base\Module;
-use phuong17889\role\helpers\RoleChecker;
-use phuong17889\role\helpers\RoleHelper;
+use phuongdev89\base\Module;
+use phuongdev89\role\helpers\RoleChecker;
+use phuongdev89\role\helpers\RoleHelper;
+use phuongdev89\role\models\Role;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model phuong17889\role\models\Role */
-/* @var $form yii\widgets\ActiveForm */
+/**
+ * @var View $this
+ * @var Role $model
+ * @var ActiveForm $form
+ */
 ?>
 <style>
     input[type=checkbox].ace + .lbl::before, input[type=radio].ace + .lbl::before {

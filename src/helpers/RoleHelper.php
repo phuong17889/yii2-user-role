@@ -1,17 +1,17 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    26/02/2016
  * @time    2:40 CH
  */
 
-namespace phuong17889\role\helpers;
+namespace phuongdev89\role\helpers;
 
-use phuong17889\language\Translate;
-use phuong17889\role\filters\RoleFilter;
+use phuongdev89\language\Translate;
+use phuongdev89\role\filters\RoleFilter;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ReflectionClass;
@@ -108,7 +108,7 @@ class RoleHelper extends ArrayHelper
                                 $actions[$key] = $action;
                             }
                         }
-                        $response['name'] = isset($behaviors['role']['name']) ? $behaviors['role']['name'] : end(explode('\\', $namespace));
+                        $response['name'] = $behaviors['role']['name'] ?? end(explode('\\', $namespace));
                         $response['actions'] = $actions;
                         break;
                     }

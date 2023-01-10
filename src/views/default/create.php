@@ -1,11 +1,15 @@
 <?php
-/* @var $this yii\web\View */
 
-use phuong17889\base\Module;
-use phuong17889\role\helpers\RoleHelper;
+use phuongdev89\base\Module;
+use phuongdev89\role\helpers\RoleHelper;
+use phuongdev89\role\models\Role;
 use yii\bootstrap\Html;
+use yii\web\View;
 
-/* @var $model phuong17889\role\models\Role */
+/**
+ * @var View $this
+ * @var Role $model
+ */
 $this->title = Module::hasMultiLanguage() ? RoleHelper::translate('create') : Yii::t('role', 'Create');
 $this->params['breadcrumbs'][] = [
     'label' => Module::hasMultiLanguage() ? RoleHelper::translate('user_role') : Yii::t('role', 'User role'),

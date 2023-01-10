@@ -1,20 +1,21 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    26/02/2016
  * @time    11:50 PM
  */
 
-namespace phuong17889\role\controllers;
+namespace phuongdev89\role\controllers;
 
-use phuong17889\base\Module;
-use phuong17889\role\filters\RoleFilter;
-use phuong17889\role\helpers\RoleHelper;
-use phuong17889\role\models\Role;
-use phuong17889\role\models\RoleSearch;
+use phuongdev89\base\Module;
+use phuongdev89\role\filters\RoleFilter;
+use phuongdev89\role\helpers\RoleHelper;
+use phuongdev89\role\models\Role;
+use phuongdev89\role\models\search\RoleSearch;
+use Throwable;
 use Yii;
 use yii\db\StaleObjectException;
 use yii\filters\VerbFilter;
@@ -138,7 +139,7 @@ class DefaultController extends Controller
      *
      * @return Response
      * @throws NotFoundHttpException
-     * @throws StaleObjectException
+     * @throws StaleObjectException|Throwable
      */
     public function actionDelete($id)
     {

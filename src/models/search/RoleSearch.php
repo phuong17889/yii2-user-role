@@ -1,21 +1,21 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    27/02/2016
  * @time    12:15 SA
  */
 
-namespace phuong17889\role\models;
+namespace phuongdev89\role\models\search;
 
-use Yii;
+use phuongdev89\role\models\Role;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * RoleSearch represents the model behind the search form about `phuong17889\role\models\Role`.
+ * RoleSearch represents the model behind the search form about `phuongdev89\role\models\Role`.
  */
 class RoleSearch extends Role
 {

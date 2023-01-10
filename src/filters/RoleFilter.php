@@ -1,18 +1,18 @@
 <?php
 /**
- * Created by phuong17889.
+ * Created by phuongdev89.
  * @project yii2-user-role
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    26/02/2016
  * @time    2:05 CH
  */
 
-namespace phuong17889\role\filters;
+namespace phuongdev89\role\filters;
 
-use phuong17889\base\Module;
-use phuong17889\role\helpers\RoleChecker;
-use phuong17889\role\helpers\RoleHelper;
+use phuongdev89\base\Module;
+use phuongdev89\role\helpers\RoleChecker;
+use phuongdev89\role\helpers\RoleHelper;
 use Yii;
 use yii\base\ActionEvent;
 use yii\base\Behavior;
@@ -42,9 +42,10 @@ class RoleFilter extends Behavior
      */
     public function beforeAction(ActionEvent $event)
     {
-        $controller = $event->action->controller->className();
+        $controller = $event->action->controller;
+        $controllerClass = get_class($controller);
         $action = $event->action->id;
-        if (RoleChecker::isAuth($controller, $action)) {
+        if (RoleChecker::isAuth($controllerClass, $action)) {
             return true;
         } else {
             if (Yii::$app->user->isGuest) {
