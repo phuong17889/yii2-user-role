@@ -10,6 +10,7 @@
 
 namespace phuongdev89\role;
 
+use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\InvalidConfigException;
